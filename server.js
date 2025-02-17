@@ -1,11 +1,12 @@
 import express from "express";
-import { db } from "./connect.js";
+import { db } from "./api/connect.js";
 import cors from "cors";
 const app = express();
 import "dotenv/config";
 const PORT = process.env.PORT;
+
 app.use(cors());
-//app.use(express.json());
+app.use(express.json());
 
 app.get("/", (request, response) => {
   response.send("Olá, Mundo!");
