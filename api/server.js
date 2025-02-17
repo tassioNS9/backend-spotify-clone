@@ -1,11 +1,9 @@
 import express from "express";
 import { db } from "./connect.js";
-import { artistArray } from "../database/artists.js";
-import { songsArray } from "../database/songs.js";
 import cors from "cors";
 const app = express();
-const PORT = 3000;
-
+import "dotenv/config";
+const PORT = process.env.PORT;
 app.use(cors());
 //app.use(express.json());
 
@@ -20,6 +18,7 @@ app.get("/artists", async (request, response) => {
 app.get("/songs", async (request, response) => {
   response.send(await db.collection("songs").find({}).toArray());
 });
+
 app.listen(PORT, () => {
   console.log(`Servidor está escutando na porta ${PORT}`);
 });
